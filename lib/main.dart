@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pagination/character_list_view.dart';
+import 'package:pagination/home.dart';
+
+import 'static/pagination_static.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +18,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const CharacterListView(),
+      home: const HomePage(),
     );
   }
 }

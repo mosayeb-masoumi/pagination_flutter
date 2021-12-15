@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:pagination/character_summary.dart';
+import '../model/character_summary.dart';
 
 class CharacterListItem extends StatelessWidget {
   final CharacterSummary character;

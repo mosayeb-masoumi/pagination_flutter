@@ -1,18 +1,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:pagination/character_list_item.dart';
-import 'package:pagination/character_summary.dart';
-import 'package:pagination/repository2.dart';
+import 'package:pagination/static/character_list_item.dart';
+import 'package:pagination/static/repository2.dart';
+import '../model/character_summary.dart';
 
-class CharacterListView extends StatefulWidget {
-  const CharacterListView({Key? key}) : super(key: key);
+
+class PaginationStatic extends StatefulWidget {
+  const PaginationStatic({Key? key}) : super(key: key);
 
   @override
-  _CharacterListViewState createState() => _CharacterListViewState();
+  _PaginationStaticState createState() => _PaginationStaticState();
 }
 
-class _CharacterListViewState extends State<CharacterListView> {
+class _PaginationStaticState extends State<PaginationStatic> {
 
   static const _pageSize = 8;
   final PagingController<int , CharacterSummary> _pagingController = PagingController(firstPageKey: 0);

@@ -1,4 +1,4 @@
-import 'package:pagination/character_summary.dart';
+import 'package:pagination/model/character_summary.dart';
 
 class MyRepository{
   
