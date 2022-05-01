@@ -45,8 +45,8 @@ class HomePage extends StatelessWidget {
               RaisedButton(
                   child: Text("dynamic list pagination"),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => PaginationDynamic()),
-                    );
+                    // Navigator.push(context, MaterialPageRoute(builder: (context) => PaginationDynamic()),
+                    // );
                   }),
 
             ],

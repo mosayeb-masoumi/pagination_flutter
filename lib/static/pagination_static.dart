@@ -47,18 +47,36 @@ class _PaginationStaticState extends State<PaginationStatic> {
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, CharacterSummary>.separated(
-      pagingController: _pagingController,
-      builderDelegate: PagedChildBuilderDelegate<CharacterSummary>(
-        animateTransitions: true,
-        itemBuilder: (context, item, index) => CharacterListItem(character: item, index: index),
-        // itemBuilder: (context, item, index) {
-        //   return myWidget(context ,item ,index);
-        // }
+    return Scaffold(
+      body: PagedListView<int, CharacterSummary>.separated(
+
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<CharacterSummary>(
+          animateTransitions: true,
+
+          firstPageProgressIndicatorBuilder: (_) =>
+              firstPageIndicator(context),
+          newPageProgressIndicatorBuilder: (_) =>
+              NewItemIndicator(context),
+          // noMoreItemsIndicatorBuilder: (_) => NoMoreItemIndicator(context),
+          noItemsFoundIndicatorBuilder: (_) =>
+              noFirstItemsFoundIndicator(context),
+          newPageErrorIndicatorBuilder: (_) =>
+              newPageErrorIndicatorBuilder(context),
+          firstPageErrorIndicatorBuilder: (_) =>
+              firstPageErrorIndicatorBuilder(context),
 
 
+
+          itemBuilder: (context, item, index) => CharacterListItem(character: item, index: index),
+          // itemBuilder: (context, item, index) {
+          //   return myWidget(context ,item ,index);
+          // }
+
+
+        ),
+        separatorBuilder: (context, index) => const Divider(),
       ),
-      separatorBuilder: (context, index) => const Divider(),
     );
   }
 
@@ -69,12 +87,76 @@ class _PaginationStaticState extends State<PaginationStatic> {
     super.dispose();
   }
 
-  // Widget myWidget(BuildContext context, CharacterSummary item, int index) {
-  //   return  Container(
-  //     margin: EdgeInsets.only(bottom: 50),
-  //     padding: EdgeInsets.all(20),
-  //     child: Text(item.name+index.toString() , style: TextStyle(fontSize: 15),),
-  //   );
-  // }
+  Widget NewItemIndicator(BuildContext context) {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(right: 10),
+      color: Colors.yellow,
+      child: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            " ...در حال دریافت",
+            style: TextStyle(color: Colors.black26),
+            textAlign: TextAlign.right,
+          )),
+    );
+  }
+
+  Widget NoMoreItemIndicator(BuildContext context) {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(right: 10),
+      color: Colors.yellow,
+      child: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            "!آیتم بیشتری برای نمایش وجود ندارد",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.right,
+          )),
+    );
+  }
+
+  Widget newPageErrorIndicatorBuilder(BuildContext context) {
+    return Container(
+      height: 50,
+      width: MediaQuery.of(context).size.width,
+      padding: EdgeInsets.only(right: 10),
+      color: Colors.yellow,
+      child: Align(
+          alignment: Alignment.centerRight,
+          child: Text(
+            "!خطا در دریافت اطلاعات",
+            style: TextStyle(color: Colors.white),
+            textAlign: TextAlign.right,
+          )),
+    );
+  }
+
+  Widget firstPageIndicator(BuildContext context) {
+    return Center(
+        child: CircularProgressIndicator(
+          color: Colors.yellow,
+        ));
+  }
+
+  Widget noFirstItemsFoundIndicator(BuildContext context) {
+    return Center(
+        child: Text(
+          "آیتمی برای نمایش وجود ندارد",
+          style: TextStyle(color: Colors.yellow),
+        ));
+  }
+
+  Widget firstPageErrorIndicatorBuilder(BuildContext context) {
+    return Center(
+        child: Text(
+          "!خطا در دریافت اطلاعات",
+          style: TextStyle(color: Colors.yellow),
+        ));
+  }
+
 
 }
